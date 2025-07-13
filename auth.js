@@ -1,18 +1,65 @@
-// Import Firebase
+// Import Firebase SDK modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Your Firebase config
+// Your Firebase project configuration (replace with your own values)
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
   projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID",
-  // Add other config details if needed
+  appId: "YOUR_APP_ID"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔐 Add login/signup logic here
+///////////////////////////////////////////////////
+// 🔐 LOGIN FUNCTION
+const loginForm = document.getElementById("login-form");
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+    const message = document.getElementById("login-message");
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        message.style.color = "green";
+        message.textContent = "Login successful!";
+        setTimeout(() => {
+          window.location.href = "index.html"; // or dashboard page
+        }, 1500);
+      })
+      .catch((error) => {
+        message.style.color = "red";
+        message.textContent = error.message;
+      });
+  });
+}
+
+///////////////////////////////////////////////////
+// 📝 SIGNUP FUNCTION
+const signupForm = document.getElementById("signup-form");
+if (signupForm) {
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
+    const message = document.getElementById("signup-message");
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        message.style.color = "green";
+        message.textContent = "Signup successful!";
+        setTimeout(() => {
+          window.location.href = "index.html"; // or welcome page
+        }, 1500);
+      })
+      .catch((error) => {
+        message.style.color = "red";
+        message.textContent = error.message;
+      });
+  });
+}
