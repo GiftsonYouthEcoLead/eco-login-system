@@ -31,7 +31,7 @@ if (loginForm) {
         message.style.color = "green";
         message.textContent = "Login successful!";
         setTimeout(() => {
-          window.location.href = "index.html"; // or your dashboard
+          window.location.href = "dashboard.html"; // or your dashboard
         }, 1500);
       })
       .catch((error) => {
