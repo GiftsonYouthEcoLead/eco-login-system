@@ -2,15 +2,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Your Firebase project configuration (replace with your own values)
+// ✅ Your actual Firebase config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
+  apiKey: "AIzaSyCecs-rafW9Wz2oc-elmp-YZplYpKhgLuM",
+  authDomain: "youthecoleadauth.firebaseapp.com",
+  projectId: "youthecoleadauth",
+  storageBucket: "youthecoleadauth.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
   appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
+// ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -29,7 +31,7 @@ if (loginForm) {
         message.style.color = "green";
         message.textContent = "Login successful!";
         setTimeout(() => {
-          window.location.href = "index.html"; // or dashboard page
+          window.location.href = "index.html"; // or your dashboard
         }, 1500);
       })
       .catch((error) => {
@@ -54,7 +56,7 @@ if (signupForm) {
         message.style.color = "green";
         message.textContent = "Signup successful!";
         setTimeout(() => {
-          window.location.href = "index.html"; // or welcome page
+          window.location.href = "index.html";
         }, 1500);
       })
       .catch((error) => {
